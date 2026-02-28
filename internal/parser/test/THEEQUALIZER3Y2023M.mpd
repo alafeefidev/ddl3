@@ -1,0 +1,642 @@
+<!-- https://pbk.qi.tv/bpk-vod/vod/default/afea/afea/index.mpd -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Unified Streaming Platform  (version=1.12.8-28913) -->
+<MPD
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="urn:mpeg:dash:schema:mpd:2011"
+  xmlns:cenc="urn:mpeg:cenc:2013"
+  xmlns:mspr="urn:microsoft:playready"
+  xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
+  type="static"
+  mediaPresentationDuration="PT1H42M35.920S"
+  maxSegmentDuration="PT1M"
+  minBufferTime="PT10S"
+  profiles="urn:mpeg:dash:profile:isoff-live:2011,urn:com:dashif:dash264">
+  <Period
+    id="1"
+    duration="PT1H42M35.920S">
+    <BaseURL>dash/</BaseURL>
+    <AdaptationSet
+      id="1"
+      group="1"
+      contentType="audio"
+      lang="en"
+      segmentAlignment="true"
+      audioSamplingRate="44100"
+      mimeType="audio/mp4"
+      codecs="mp4a.40.5"
+      startWithSAP="1">
+      <AudioChannelConfiguration
+        schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011"
+        value="2" />
+      <!-- Common Encryption -->
+      <ContentProtection
+        schemeIdUri="urn:mpeg:dash:mp4protection:2011"
+        value="cenc"
+        cenc:default_KID="CE3089D0-88BE-5DC2-8D7E-799D5097BA2F">
+      </ContentProtection>
+      <!-- PlayReady -->
+      <ContentProtection
+        schemeIdUri="urn:uuid:9A04F079-9840-4286-AB92-E65BE0885F95"
+        value="MSPR 2.0">
+        <cenc:pssh>AAACvnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAp6eAgAAAQABAJQCPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgAwAEkAawB3AHoAcgA2AEkAdwBsADIATgBmAG4AbQBkAFUASgBlADYATAB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+ADIAcQB2AHEAdQB6AGoAcwA2AGkAVQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAHAAbABhAHkAcgBlAGEAZAB5AC0AbABpAGMAZQBuAHMAZQAuAGQAcgBtAC4AdABlAGMAaABuAG8AbABvAGcAeQAvAHIAaQBnAGgAdABzAG0AYQBuAGEAZwBlAHIALgBhAHMAbQB4ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</cenc:pssh>
+        <mspr:IsEncrypted>1</mspr:IsEncrypted>
+        <mspr:IV_Size>8</mspr:IV_Size>
+        <mspr:kid>0Ikwzr6Iwl2NfnmdUJe6Lw==</mspr:kid>
+        <mspr:pro>ngIAAAEAAQCUAjwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AMABJAGsAdwB6AHIANgBJAHcAbAAyAE4AZgBuAG0AZABVAEoAZQA2AEwAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgAyAHEAdgBxAHUAegBqAHMANgBpAFUAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBwAGwAYQB5AHIAZQBhAGQAeQAtAGwAaQBjAGUAbgBzAGUALgBkAHIAbQAuAHQAZQBjAGgAbgBvAGwAbwBnAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA8AC8ATABBAF8AVQBSAEwAPgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</mspr:pro>
+      </ContentProtection>
+      <!-- Widevine -->
+      <ContentProtection
+        schemeIdUri="urn:uuid:EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED">
+        <cenc:pssh>AAAAO3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAABsiE1RIRUVRVUFMSVpFUjNZMjAyM01I49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main" />
+      <SegmentTemplate
+        timescale="44100"
+        initialization="THEEQUALIZER3Y2023M-$RepresentationID$.dash"
+        media="THEEQUALIZER3Y2023M-$RepresentationID$-$Time$.dash">
+        <SegmentTimeline>
+          <S t="0" d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="13" />
+          <S d="90112" />
+          <S d="88064" r="14" />
+          <S d="90112" />
+          <S d="88064" r="3" />
+          <S d="81920" />
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation
+        id="audio_eng=96000"
+        bandwidth="96000">
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet
+      id="2"
+      group="3"
+      contentType="text"
+      lang="ar"
+      mimeType="application/mp4"
+      codecs="stpp.ttml"
+      startWithSAP="1">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle" />
+      <SegmentTemplate
+        timescale="1000"
+        initialization="THEEQUALIZER3Y2023M-$RepresentationID$.dash"
+        media="THEEQUALIZER3Y2023M-$RepresentationID$-$Time$.dash">
+        <SegmentTimeline>
+          <S t="0" d="60000" r="95" />
+          <S d="2854" />
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation
+        id="textstream_ara=1000"
+        bandwidth="1000">
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet
+      id="3"
+      group="3"
+      contentType="text"
+      lang="en"
+      mimeType="application/mp4"
+      codecs="stpp.ttml"
+      startWithSAP="1">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle" />
+      <SegmentTemplate
+        timescale="1000"
+        initialization="THEEQUALIZER3Y2023M-$RepresentationID$.dash"
+        media="THEEQUALIZER3Y2023M-$RepresentationID$-$Time$.dash">
+        <SegmentTimeline>
+          <S t="0" d="60000" r="100" />
+          <S d="16947" />
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation
+        id="textstream_eng=1000"
+        bandwidth="1000">
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet
+      id="4"
+      group="2"
+      contentType="video"
+      par="16:9"
+      minBandwidth="199993"
+      maxBandwidth="4499821"
+      maxWidth="1920"
+      maxHeight="1080"
+      segmentAlignment="true"
+      sar="1:1"
+      frameRate="25"
+      mimeType="video/mp4"
+      startWithSAP="1">
+      <!-- Common Encryption -->
+      <ContentProtection
+        schemeIdUri="urn:mpeg:dash:mp4protection:2011"
+        value="cenc"
+        cenc:default_KID="CE3089D0-88BE-5DC2-8D7E-799D5097BA2F">
+      </ContentProtection>
+      <!-- PlayReady -->
+      <ContentProtection
+        schemeIdUri="urn:uuid:9A04F079-9840-4286-AB92-E65BE0885F95"
+        value="MSPR 2.0">
+        <cenc:pssh>AAACvnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAp6eAgAAAQABAJQCPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgAwAEkAawB3AHoAcgA2AEkAdwBsADIATgBmAG4AbQBkAFUASgBlADYATAB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+ADIAcQB2AHEAdQB6AGoAcwA2AGkAVQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAHAAbABhAHkAcgBlAGEAZAB5AC0AbABpAGMAZQBuAHMAZQAuAGQAcgBtAC4AdABlAGMAaABuAG8AbABvAGcAeQAvAHIAaQBnAGgAdABzAG0AYQBuAGEAZwBlAHIALgBhAHMAbQB4ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</cenc:pssh>
+        <mspr:IsEncrypted>1</mspr:IsEncrypted>
+        <mspr:IV_Size>8</mspr:IV_Size>
+        <mspr:kid>0Ikwzr6Iwl2NfnmdUJe6Lw==</mspr:kid>
+        <mspr:pro>ngIAAAEAAQCUAjwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AMABJAGsAdwB6AHIANgBJAHcAbAAyAE4AZgBuAG0AZABVAEoAZQA2AEwAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgAyAHEAdgBxAHUAegBqAHMANgBpAFUAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBwAGwAYQB5AHIAZQBhAGQAeQAtAGwAaQBjAGUAbgBzAGUALgBkAHIAbQAuAHQAZQBjAGgAbgBvAGwAbwBnAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA8AC8ATABBAF8AVQBSAEwAPgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</mspr:pro>
+      </ContentProtection>
+      <!-- Widevine -->
+      <ContentProtection
+        schemeIdUri="urn:uuid:EDEF8BA9-79D6-4ACE-A3C8-27DCD51D21ED">
+        <cenc:pssh>AAAAO3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAABsiE1RIRUVRVUFMSVpFUjNZMjAyM01I49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main" />
+      <SegmentTemplate
+        timescale="600"
+        initialization="THEEQUALIZER3Y2023M-$RepresentationID$.dash"
+        media="THEEQUALIZER3Y2023M-$RepresentationID$-$Time$.dash">
+        <SegmentTimeline>
+          <S t="0" d="1200" r="3076" />
+          <S d="1152" />
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation
+        id="video=199993"
+        bandwidth="199993"
+        width="416"
+        height="234"
+        codecs="avc1.42C01E"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=399986"
+        bandwidth="399986"
+        width="416"
+        height="234"
+        codecs="avc1.42C01E"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=599980"
+        bandwidth="599980"
+        width="640"
+        height="360"
+        codecs="avc1.42C01E"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=799973"
+        bandwidth="799973"
+        width="640"
+        height="360"
+        codecs="avc1.42C01E"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=1199960"
+        bandwidth="1199960"
+        width="640"
+        height="360"
+        codecs="avc1.42C01E"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=1599947"
+        bandwidth="1599947"
+        width="1024"
+        height="576"
+        codecs="avc1.4D401F"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=2499886"
+        bandwidth="2499886"
+        width="1280"
+        height="720"
+        codecs="avc1.4D401F"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=3499854"
+        bandwidth="3499854"
+        width="1280"
+        height="720"
+        codecs="avc1.640029"
+        scanType="progressive">
+      </Representation>
+      <Representation
+        id="video=4499821"
+        bandwidth="4499821"
+        width="1920"
+        height="1080"
+        codecs="avc1.640029"
+        scanType="progressive">
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>
