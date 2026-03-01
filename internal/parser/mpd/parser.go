@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/alafeefidev/ddl3/internal/enums"
+	"github.com/alafeefidev/ddl3/internal/utils"
 )
 
 // https://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd
@@ -30,6 +31,7 @@ type Period struct {
 	Duration       *string          `xml:"duration,attr"`
 	Id             *string          `xml:"id,attr"`
 	BaseUrl        *string          `xml:"BaseURL,omitempty"` // combine with Mpd BaseUrl
+	ResolvedURL    string           `xml:"-"`
 	AdaptationSets []*AdaptationSet `xml:"AdaptationSet,omitempty"`
 }
 
@@ -40,6 +42,7 @@ type AdaptationSet struct {
 	ContentType               *string              `xml:"contentType,attr"` // ex. video, audio, text
 	FrameRate                 *string              `xml:"frameRate,attr"`
 	BaseUrl                   *string              `xml:"BaseURL,omitempty"` // combine with Period, Mpd BaseUrl
+	ResolvedURL               string               `xml:"-"`
 	Codecs                    *string              `xml:"codecs,attr"`
 	Width                     *uint64              `xml:"width,attr"`
 	Height                    *uint64              `xml:"height,attr"`
@@ -63,6 +66,7 @@ type Representation struct {
 	Width       *uint64 `xml:"width,attr"`
 	Height      *uint64 `xml:"height,attr"`
 	BaseUrl     *string `xml:"BaseURL,omitempty"` // combine with AdaptationSet, Period, Mpd BaseUrl
+	ResolvedURL string  `xml:"-"`
 }
 
 // https://dashif.org/identifiers/content_protection/
@@ -75,9 +79,38 @@ type ContentProtection struct {
 }
 
 type MediaEncryption struct {
-	Type  string  // cenc, widevine, playready
-	Value string  // DefaultKid for cenc, pssh for widevine and playready
-	Pro   *string // only for playready
+	Type  string // cenc, widevine, playready
+	Value string // DefaultKid for cenc, pssh for widevine and playready
+	Pro   string // only for playready
+}
+
+func (m *Mpd) ResolveUrls(mpdURL string) {
+	mpdBase := utils.StripUrlFilename(mpdURL)
+
+	if m.BaseUrl != nil {
+		mpdBase = utils.ResolveUrl(mpdBase, *m.BaseUrl)
+	}
+
+	for _, p := range m.Periods {
+		p.ResolvedURL = mpdBase
+		if p.BaseUrl != nil {
+			p.ResolvedURL = utils.ResolveUrl(mpdBase, *p.BaseUrl)
+		}
+
+		for _, as := range p.AdaptationSets {
+			as.ResolvedURL = p.ResolvedURL
+			if as.BaseUrl != nil {
+				as.ResolvedURL = utils.ResolveUrl(p.ResolvedURL, *as.BaseUrl)
+			}
+			
+			for _, rep := range as.Representations {
+				rep.ResolvedURL = as.ResolvedURL
+				if rep.BaseUrl != nil {
+					rep.ResolvedURL = utils.ResolveUrl(as.ResolvedURL, *rep.BaseUrl)
+				}
+			}
+		}
+	}
 }
 
 func (a *AdaptationSet) GetAllEncryption() ([]MediaEncryption, error) {
@@ -120,7 +153,7 @@ func (cp *ContentProtection) GetEncryption() (*MediaEncryption, error) {
 				return &MediaEncryption{
 					Type:  "playready",
 					Value: *cp.PSSH,
-					Pro:   cp.Pro, // hmmm, same reference
+					Pro:   *cp.Pro, // hmmm, same reference
 				}, nil
 			}
 			return nil, fmt.Errorf("no pssh or pro key found in playready element")
@@ -186,7 +219,7 @@ func (a *AdaptationSet) GetCodecAll() (string, error) {
 func (a *AdaptationSet) GetCodec() (string, error) {
 	// Mostly for audio and subtitles AdaptationSet
 	if a.Codecs != nil {
-		return codecRepr(*a.Codecs), nil
+		return utils.CodecRepr(*a.Codecs), nil
 	}
 	return "", fmt.Errorf("no codec found for the AdaptationSet")
 }
@@ -194,38 +227,9 @@ func (a *AdaptationSet) GetCodec() (string, error) {
 func (r *Representation) GetCodec() (string, error) {
 	// Mostly to video Representations have to check more examples
 	if r.Codecs != nil {
-		return codecRepr(*r.Codecs), nil
+		return utils.CodecRepr(*r.Codecs), nil
 	}
 	return "", fmt.Errorf("no codec found for the representation")
-}
-
-func codecRepr(codec string) string {
-	// Return codec with fallback to provided codec string if not found
-	c := strings.ToLower(codec)
-	switch {
-	case strings.HasPrefix(c, "avc1"):
-		return "H.264"
-	case strings.HasPrefix(c, "hvc1"):
-		return "H.265"
-	case strings.HasPrefix(c, "hev1"):
-		return "HEVC"
-	case strings.HasPrefix(c, "av01"):
-		return "AV1"
-	case strings.HasPrefix(c, "vp09"):
-		return "VP9"
-	case strings.EqualFold(c, "mp4a.40.2"):
-		return "AAC-LC"
-	case strings.EqualFold(c, "mp4a.40.5"):
-		return "HE-AAC (v1)"
-	case strings.EqualFold(c, "mp4a.40.29"):
-		return "HE-AAC v2"
-	case strings.EqualFold(c, "ac-3"):
-		return "Dolby AC-3"
-	case strings.EqualFold(c, "ec-3"):
-		return "Dolby E-AC-3 (Atmos)"
-	default:
-		return c
-	}
 }
 
 func (a *AdaptationSet) GetResolutionRepr() (string, error) {

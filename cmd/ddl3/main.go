@@ -17,13 +17,14 @@ func main() {
 	// var mpd smbd.Mpd
 	// xml.Unmarshal(file, &mpd)
 
-	
 	mpd, err := parser.LoadFromUri(url)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println(*mpd.Periods[0].AdaptationSets[1].ContentProtections[1].DefaultKid)
+	mpd.ResolveUrls(url)
+
+	fmt.Println(mpd.Periods[0].AdaptationSets[0].Representations[0].ResolvedURL)
 
 }
