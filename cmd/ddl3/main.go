@@ -1,22 +1,29 @@
 package main
 
 import (
-	"encoding/xml"
+	// "encoding/xml"
 	"fmt"
-	"os"
+	// "os"
 
-	smbd "github.com/alafeefidev/ddl3/internal/parser/mpd"
+	"github.com/alafeefidev/ddl3/internal/parser"
 )
 
 func main() {
-	name := "C:\\Users\\Admin\\Documents\\code\\ddl3\\internal\\parser\\test\\THEEQUALIZER3Y2023M.mpd"
-	file, err := os.ReadFile(name)
+	// name := "C:\\Users\\Admin\\Documents\\code\\ddl3\\internal\\parser\\test\\THEEQUALIZER3Y2023M.mpd"
+	// file, err := os.ReadFile(name)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// var mpd smbd.Mpd
+	// xml.Unmarshal(file, &mpd)
+
+	
+	mpd, err := parser.LoadFromUri(url)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
-	var mpd smbd.Mpd
-	xml.Unmarshal(file, &mpd)
 
-	fmt.Println(*mpd.BaseUrl)
+	fmt.Println(*mpd.Periods[0].AdaptationSets[1].ContentProtections[1].DefaultKid)
 
 }

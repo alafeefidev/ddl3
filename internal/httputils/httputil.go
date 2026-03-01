@@ -16,7 +16,7 @@ type HttpClient struct {
 func (h *HttpClient) ReqContentGet(path string) ([]byte, error) {
 	//TODO add context timeout and such from config struct
 
-	if err := utils.IsCorrectHttpUrl(h.BaseUrl); err != nil {
+	if _, err := utils.IsCorrectUrl(h.BaseUrl); err != nil {
 		return nil, err
 	}
 
@@ -36,4 +36,12 @@ func (h *HttpClient) ReqContentGet(path string) ([]byte, error) {
 
 	defer resp.Body.Close()
 	return io.ReadAll(resp.Body)
+}
+
+func NewHttpClient(baseUrl string) *HttpClient {
+	return &HttpClient{
+		BaseUrl:    baseUrl,
+		Headers:    make(map[string]string),
+		HttpClient: &http.Client{},
+	}
 }

@@ -4,45 +4,53 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"encoding/xml"
 
 	"github.com/alafeefidev/ddl3/internal/httputils"
 	"github.com/alafeefidev/ddl3/internal/parser/hls"
+	MPD "github.com/alafeefidev/ddl3/internal/parser/mpd"
 	"github.com/alafeefidev/ddl3/internal/utils"
 )
 
 type ParsingConfig struct {
-	Url string
+	Url         string
 	OriginalUrl string
-	BaseUrl string
+	BaseUrl     string
 }
 
-func LoadFromUri(uri string) error {
-	if err := utils.IsCorrectHttpUrl(uri); err == nil {
-		client := &httputils.HttpClient{BaseUrl: uri}
+//TODO change return to be able to return mpd and hls
+func LoadFromUri(uri string) (*MPD.Mpd, error) {
+	if ok, err := utils.IsCorrectUrl(uri); ok {
+		client := httputils.NewHttpClient(uri)
 		resp, err := client.ReqContentGet("")
 		if err != nil {
-			return err
+			return nil, err
 		}
-		//TODO return LoadFromText(*resp)
-		resp = resp // remove
-		return nil  // remove
+		
+		mpd, err := LoadFromText(resp)
+		if err != nil {
+			return nil, err
+		}
+		return mpd, nil
 
-	} else if err != nil {
-		return err
 	} else {
-		return fmt.Errorf("Unsupported schema %w", utils.ErrNotSupported)
+		return nil, fmt.Errorf("Unsupported url %w: %w", utils.ErrNotSupported, err)
 	}
 }
 
-func LoadFromText(content *string) error {
-	*content = strings.Trim(*content, " ")
+func LoadFromText(content []byte) (*MPD.Mpd, error) {
+	s := strings.TrimSpace(string(content))
 
-	if strings.Contains(*content, hls.ExtM3u) {
-		return errors.New("Manage hls downloads")
-	} else if strings.Contains(*content, "</MPD>") && strings.Contains(*content, "<MPD") {
-		//TODO
-		return errors.New("Manage dash/mpd downloads")
+	if strings.Contains(s, hls.ExtM3u) {
+		return nil, errors.New("Manage hls downloads")
+	} else if strings.Contains(s, "</MPD>") && strings.Contains(s, "<MPD") {
+		var mpd MPD.Mpd
+		if err := xml.Unmarshal([]byte(s), &mpd); err != nil {
+			return nil, err
+		}
+		return &mpd, nil
+
 	} else {
-		return errors.New("Extension not supported")
+		return nil, errors.New("Extension not supported")
 	}
 }
